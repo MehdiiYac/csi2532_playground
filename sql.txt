@@ -1,0 +1,84 @@
+1: CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+);
+CREATE TABLE cours(
+	courseID int,
+	PRIMARY KEY(courseID)
+);
+CREATE TABLE semester(
+	semesterID int,
+);
+
+
+2: CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+	FOREIGN KEY(courseID) references course
+);
+CREATE TABLE cours(
+	courseID int,
+	PRIMARY KEY(courseID)
+);
+CREATE TABLE semester(
+	semesterID int,
+);
+
+
+3: CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+	UNIQUE FOREIGN KEY(courseID) references course
+);
+CREATE TABLE cours(
+	courseID int,
+	PRIMARY KEY(courseID)
+);
+CREATE TABLE semester(
+	semesterID int,
+)
+
+4: CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+	UNIQUE FOREIGN KEY(courseID) references course
+);
+CREATE TABLE cours(
+	courseID int,
+	PRIMARY KEY(courseID)
+	UNIQUE FOREIGN KEY(SSN) references professor
+);
+CREATE TABLE semester(
+	semesterID int,
+)
+
+
+5: CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+);
+CREATE TABLE cours(
+	courseID int,
+	PRIMARY KEY(courseID)
+);
+CREATE TABLE semester(
+	semesterID int,
+	PRIMARY KEY(semesterID)
+);
+
+
+6:
+CREATE TABLE professor(
+	SSN int,
+	PRIMARY KEY(SSN),
+);
+CREATE TABLE cours(
+	courseID int,
+);
+CREATE TABLE semester(
+	semesterID int,
+)
+CREATE TABLE group(
+	groupID int,
+	PRIMARY KEY(groupID),
+);
