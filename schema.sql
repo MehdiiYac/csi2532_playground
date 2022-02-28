@@ -1,16 +1,36 @@
-
-CREATE TABLE department (
-  dept_name varchar(20),
-  building varchar(15),
-  budget numeric(12,2) check (budget > 0),
-  primary key (dept_name)
+CREATE TABLE artists (
+    name VARCHAR(20),
+    birthplace VARCHAR(20),
+    style VARCHAR(20),
+    dateofbirth DATE,
+    PRIMARY KEY (name)
 );
-
-CREATE TABLE course (course_id    varchar(8),
-  title varchar(50),
-  dept_name varchar(20),
-  credits numeric(2,0) check (credits > 0),
-  primary key (course_id),
-  foreign key (dept_name) references department
-  on delete set null
+ALTER TABLE artists
+ADD COLUMN country varchar(100);
+CREATE TABLE customers (
+    id INTEGER,
+    name VARCHAR(20),
+    address VARCHAR(20),
+    amount numeric(8, 2),
+    PRIMARY KEY (id)
+);
+ALTER TABLE customers
+ADD COLUMN rating integer CHECK (
+        rating between 1 and 10
+    );
+CREATE TABLE artworks (
+    title VARCHAR(20),
+    year INTEGER,
+    type VARCHAR(20),
+    price numeric(8, 2),
+    artist_name VARCHAR(20),
+    PRIMARY KEY (title),
+    FOREIGN KEY(artist_name) REFERENCES artists(name)
+);
+CREATE TABLE likeartists (
+    customer_id INTEGER,
+    artist_name VARCHAR(20),
+    PRIMARY KEY(artist_name, customer_id),
+    FOREIGN KEY (artist_name) REFERENCES artists(name),
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
