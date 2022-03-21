@@ -37,5 +37,7 @@ CREATE TRIGGER modify_sum_rating
   BEFORE UPDATE ON Book
   FOR EACH ROW
   WHEN (OLD.rating IS DISTINCT FROM NEW.rating)
-  EXECUTE PROCEDURE calculate_author_rating();
+  UPDATE Author
+  SET author_sum_rating = AVG(rating) FROM Book WHERE Book.Authorid = Author.authorid;
+
  
