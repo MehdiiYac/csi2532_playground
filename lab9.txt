@@ -1,0 +1,23 @@
+Exercice 1:
+
+CREATE TABLE Book(
+  Bookname VARCHAR(20),
+  Authorid INTEGER,
+  Amount NUMERIC(2,5)
+  book_type VARCHAR(25) IN ("Fictionadulte", "Non-fiction-adulte", "Fiction-jeunesse", "Non-fictionjeunesse"),
+  CONSTRAINT rating_check CHECK (rating >= 1 AND rating <= 10),
+  Constraint authorid_fk FOREIGN KEY referenes Author(authorid) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+Exercice 2:
+i)
+CREATE TABLE Author(
+  authorid INTEGER,
+  Authorname VARCHAR(20),
+  PRIMARY KEY authorid
+);
+ii)
+CREATE ASSERTION maxbooks 
+CHECK((select count(*) FROM  Book) + (select count(*) FROM Author)) <= 10000
+
+Exercice 3:
