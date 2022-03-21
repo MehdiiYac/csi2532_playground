@@ -21,3 +21,21 @@ CREATE ASSERTION maxbooks
 CHECK((select count(*) FROM  Book) + (select count(*) FROM Author)) <= 10000
 
 Exercice 3:
+CREATE TRIGGER	check_rating
+	BEFORE UPDATE ON Book
+	FOR EACH ROW
+	WHEN (OLD.rating IS DISTINCT FROM NEW.rating)
+	EXECUTE PROCEDURE check_book_rating();
+  
+  Exercice 4:
+i)
+  ALTER TABLE Author(
+	ADD author_sum_rating REAL DEFAULT 0
+);
+ii) 
+CREATE TRIGGER modify_sum_rating
+  BEFORE UPDATE ON Book
+  FOR EACH ROW
+  WHEN (OLD.rating IS DISTINCT FROM NEW.rating)
+  EXECUTE PROCEDURE calculate_author_rating();
+ 
